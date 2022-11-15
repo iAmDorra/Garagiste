@@ -1,6 +1,6 @@
 ﻿namespace Garagiste
 {
-    public class FrenshPrice : PriceBase
+    public class FrenshPrice : IPrice
     {
         private double tax;
         private double preTaxPrice;
@@ -11,12 +11,12 @@
             this.preTaxPrice = preTaxPrice;
         }
 
-        protected override double CalculatePreTaxAmount()
+        public double CalculatePreTaxAmount()
         {
             return preTaxPrice;
         }
 
-        protected override double CalculateVat()
+        public double CalculateVat()
         {
             return preTaxPrice* tax / 100;
         }

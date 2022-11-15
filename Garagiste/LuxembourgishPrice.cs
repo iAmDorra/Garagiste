@@ -1,6 +1,6 @@
 ﻿namespace Garagiste
 {
-    public class LuxembourgishPrice : PriceBase
+    public class LuxembourgishPrice : IPrice
     {
         private int preTaxServiceAmount;
         private int serviceTax;
@@ -18,12 +18,12 @@
             this.materialTax = materialTax;
         }
 
-        protected override double CalculateVat()
+        public double CalculateVat()
         {
             return preTaxServiceAmount * serviceTax / 100 +
                    preTaxMaterialAmount * materialTax / 100;
         }
-        protected override double CalculatePreTaxAmount()
+        public double CalculatePreTaxAmount()
         {
             return preTaxServiceAmount +
                          preTaxMaterialAmount;

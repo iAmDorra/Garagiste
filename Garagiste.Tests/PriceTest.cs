@@ -31,7 +31,7 @@ namespace Garagiste.Tests
         {
             var frenshTax = 19.6;
             var preTaxPrice = 0;
-            var frenshPrice = new FrenshPrice(frenshTax, preTaxPrice);
+            var frenshPrice = new TotalPrice(new FrenshPrice(frenshTax, preTaxPrice));
             var total = frenshPrice.CalculateTotal();
             Check.That(total).IsEqualTo(0);
         }
@@ -43,8 +43,8 @@ namespace Garagiste.Tests
             int serviceTax = 12;
             int preTaxMaterialAmount = 0;
             int materialTax = 5;
-            var luxembourgishPrice = new LuxembourgishPrice(preTaxServiceAmount, serviceTax,
-                preTaxMaterialAmount, materialTax);
+            var luxembourgishPrice = new TotalPrice(new LuxembourgishPrice(preTaxServiceAmount, serviceTax,
+                preTaxMaterialAmount, materialTax));
             var total = luxembourgishPrice.CalculateTotal();
             Check.That(total).IsEqualTo(0);
         }
@@ -54,7 +54,7 @@ namespace Garagiste.Tests
         {
             var frenshTax = 19.6;
             var preTaxPrice = 100;
-            var frenshPrice = new FrenshPrice(frenshTax, preTaxPrice);
+            var frenshPrice = new TotalPrice(new FrenshPrice(frenshTax, preTaxPrice));
             var total = frenshPrice.CalculateTotal();
             Check.That(total).IsEqualTo(119.6);
         }
@@ -66,7 +66,8 @@ namespace Garagiste.Tests
             var serviceTax = 12;
             var preTaxMaterialAmount = 100;
             var materialTax = 5;
-            var luxembourgishPrice = new LuxembourgishPrice(preTaxServiceAmount, serviceTax, preTaxMaterialAmount, materialTax);
+            var luxembourgishPrice = new TotalPrice(
+                new LuxembourgishPrice(preTaxServiceAmount, serviceTax, preTaxMaterialAmount, materialTax));
             var total = luxembourgishPrice.CalculateTotal();
             Check.That(total).IsEqualTo(161);
         }
