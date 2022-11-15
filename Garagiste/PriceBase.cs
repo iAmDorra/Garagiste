@@ -12,4 +12,5 @@
         protected abstract double CalculatePreTaxAmount();
         protected abstract double CalculateVat();
     }
+
 }

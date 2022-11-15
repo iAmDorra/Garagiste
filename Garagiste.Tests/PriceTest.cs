@@ -1,10 +1,20 @@
 using NFluent;
+using NSubstitute;
 
 namespace Garagiste.Tests
 {
     [TestClass]
     public class PriceTest
     {
+        [TestMethod]
+        public void Return_total_for_any_price()
+        {
+            IPrice price = Substitute.For<IPrice>();
+            var totalPrice = new TotalPrice(price);
+            var total = totalPrice.CalculateTotal();
+            Check.That(total).IsEqualTo(0);
+        }
+
         [TestMethod]
         public void Calculate_total_price_should_return_zero_when_pretax_value_is_zero_for_france()
         {
