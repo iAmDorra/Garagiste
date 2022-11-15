@@ -16,6 +16,17 @@ namespace Garagiste.Tests
         }
 
         [TestMethod]
+        public void Return_sum_of_pretax_vat_for_any_price()
+        {
+            IPrice price = Substitute.For<IPrice>();
+            price.CalculatePreTaxAmount().Returns(1);
+            price.CalculateVat().Returns(1);
+            var totalPrice = new TotalPrice(price);
+            var total = totalPrice.CalculateTotal();
+            Check.That(total).IsEqualTo(2);
+        }
+
+        [TestMethod]
         public void Calculate_total_price_should_return_zero_when_pretax_value_is_zero_for_france()
         {
             var frenshTax = 19.6;

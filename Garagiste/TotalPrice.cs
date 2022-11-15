@@ -11,7 +11,8 @@
 
         public double CalculateTotal()
         {
-            return 0;
+            return price.CalculateVat() +
+                price.CalculatePreTaxAmount();
         }
     }
 }
